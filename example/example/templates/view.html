@@ -1,0 +1,70 @@
+{% load django_steps %}<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th></th>
+                <th>step</th>
+                <th>name</th>
+                <th>title</th>
+                <th>pattern</th>
+                <th>index</th>
+                <th>url</th>
+            </tr>
+            <tr>
+                <td>current step:</td>
+                <td>{% current_step %}</td>
+                <td>{% current_step "name" %}</td>
+                <td>{% current_step "title" %}</td>
+                <td>{% current_step "pattern" %}</td>
+                <td>{% current_step "index" %}</td>
+                <td>{% current_step_url %}</td>
+            </tr>
+            <tr>
+                <td>next step:</td>
+                <td>{% next_step %}</td>
+                <td>{% next_step "name" %}</td>
+                <td>{% next_step "title" %}</td>
+                <td>{% next_step "pattern" %}</td>
+                <td>{% next_step "index" %}</td>
+                <td>{% next_step_url %}</td>
+            </tr>
+            <tr>
+                <td>previous step:</td>
+                <td>{% previous_step %}</td>
+                <td>{% previous_step "name" %}</td>
+                <td>{% previous_step "title" %}</td>
+                <td>{% previous_step "pattern" %}</td>
+                <td>{% previous_step "index" %}</td>
+                <td>{% previous_step_url %}</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <th>step</th>
+                <th>name</th>
+                <th>title</th>
+                <th>pattern</th>
+                <th>index</th>
+                <th>url</th>
+            </tr>
+            {% get_all_steps as all_steps %}
+            {% for step in all_steps %}
+            <tr>
+                <td>{{ step }}</td>
+                <td>{{ step.name }}</td>
+                <td>{{ step.title }}</td>
+                <td>{{ step.pattern }}</td>
+                <td>{{ step.index }}</td>
+                <td>{% step_url step %}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{% previous_step_url %}">previous</a>
+        <a href="{% next_step_url %}">next</a>
+    </body>
+</html>
